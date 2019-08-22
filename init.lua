@@ -60,7 +60,7 @@ minetest.register_node("superblock:block", {
     description = "Superblock",
     drawtype = "mesh",
     mesh = "mymeshnodes_sphere.obj",
-    tiles = {"superblock_ball.png"},
+    tiles = {"superblock_plain_ball.png^[colorize:#ff00ff:100"},
     is_ground_content = false,
     stack_max = 1,
     light_source = core.LIGHT_MAX,
@@ -79,11 +79,12 @@ minetest.register_node("superblock:block", {
                 end
             end
             minetest.set_node(pos,{name="air"})
-            return
         else
             move_block(pos, push_pull(pos,pointed_thing,1), puncher)
         end
+        return true
     end,
+    on_dig = function() end,
     on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
         --print(node.name)
         move_block(pos, push_pull(pos,pointed_thing,-1), clicker)
